@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Te amo gatinha</title>
+        <title>Te amo gatinha!</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
