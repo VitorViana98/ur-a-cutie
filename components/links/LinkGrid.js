@@ -4,20 +4,10 @@ function LinkGrid() {
 
   const links = [
     {
-      title: "MTG List",
-      description: "Useful list of mtg cards.",
-      link: "https://gatherer.wizards.com/Pages/Default.aspx",
+      title: "Fotinhas nossas",
+      description: "Algumas fotos de momentos que eu amo e nao queria esquecer",
+      link: "https://drive.google.com/drive/folders/1UkH3xcRjYNx6_aRjJEBTFCCFZwGYXeTs?usp=drive_link",
     },
-    {
-      title: "Pics of Archie",
-      description: "Feeling Down? Check these.",
-      link: "https://www.icloud.com/sharedalbum/#B0OGWZuqDJpPvsa",
-    },
-    {
-      title: "Doordash",
-      description: "Hungry? Feeling Lazy? Check this.",
-      link: "https://doordash.com"
-    }
   ]
 
 
@@ -32,7 +22,7 @@ function LinkGrid() {
           flex-wrap: wrap;
 
           max-width: 800px;
-          margin-top: 3rem;
+          margin-top: 0.5rem;
         }
 
         @media (max-width: 600px) {

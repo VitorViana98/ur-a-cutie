@@ -1,95 +1,53 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "react-feather";
-import Weather from "../components/weather/Weather";
 import axios from "axios";
 import Preloader from "../components/Preloader";
 import LinkGrid from "../components/links/LinkGrid";
-import Footer from "../components/Footer";
+import Cats from "../components/Cats";
 
 export default function Home() {
-  const [dark, setDark] = useState(true);
-  const [days, setDays] = useState([undefined, undefined, undefined, undefined, undefined]);
-  const [compliment, setCompliment] = useState("")
-
+  const [compliment, setCompliment] = useState("");
 
   useEffect(() => {
-    setDark(window.localStorage.getItem("theme") === "dark");
     axios.get("/api/compliment").then((res) => {
-      setCompliment(res.data.compliment)
-    })
-    axios.get(`/api/weather`).then((res) => {
-      setDays(res.data.days);
+      setCompliment(res.data.compliment);
     });
   }, []);
 
   if (compliment.length === 0) {
-    return <Preloader dark={dark} />
+    return <Preloader />;
   }
 
   return (
-    <div className={`container ${dark ? "dark" : ""}`}>
+    <div>
       <Head>
-        <title>Hey Cutie</title>
+        <title>Te amo gatinha</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className="title">Hi, Cutie 🥧!</h1>
+        <h1 className="title">Te amo gatinha 😻</h1>
 
-        <p className="description">Hope you're having a great day!</p>
-        <div className="toggle-container">
-          {dark ?
-            <Sun
-              onClick={() => {
-                window.localStorage.setItem("theme", "light");
-                setDark(false);
-              }}
-            />
-            : <Moon
-              onClick={() => {
-                window.localStorage.setItem("theme", "dark");
-                setDark(true);
-              }}
-            />
-          }
-        </div>
-        <code className={`${dark ? "dark-code" : ""} compliment`}>
-          Always Remember: {compliment}
+        <p className="description">Espero que tenha um dia maravilhoso!</p>
+
+        <code style={{ margin: "0 0.5rem" }}>
+          Nunca se esqueça: {compliment}
         </code>
 
-        <Weather days={days} dark={dark} />
-        <LinkGrid dark={dark}/>
+        <LinkGrid />
+        <Cats />
       </main>
-      <Footer dark={dark}/>
       <style jsx>{`
-        .dark {
-          background: #212121;
-          color: white;
-        }
-
-        .dark-code {
-          color: black;
-        }
-        
         code:hover,
         code:active,
         code:focus {
-          color: #F687B3;
-          border-color: #F687B3;
-        }
-
-        .dark-code:hover,
-        .dark-code:active,
-        .dark-code:focus {
-          background: #ED64A6;
-          border-color: #ED64A6;
-          color: black;
+          color: #f687b3;
+          border-color: #f687b3;
         }
 
         .container {
           min-height: 100vh;
-          padding: 0 0.5rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -98,6 +56,7 @@ export default function Home() {
 
         .compliment {
           cursor: pointer;
+          margin: 0 0.5rem;
         }
 
         .toggle-container {
@@ -158,22 +117,22 @@ export default function Home() {
           height: 1em;
         }
       `}</style>
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
+      <style jsx global>
+        {`
+          html,
+          body {
+            padding: 0;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+              Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+              sans-serif;
+          }
 
-        * {
-          box-sizing: border-box;
-        }
-      `}
+          * {
+            box-sizing: border-box;
+          }
+        `}
       </style>
     </div>
   );
 }
-

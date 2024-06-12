@@ -5,13 +5,6 @@ function LinkGridCard(props) {
             <p>{props.description}</p>
         </a>
         <style jsx>{`
-        .dark .card:hover,
-        .dark .card:active,
-        .dark .card:focus {
-          color: #ED64A6;
-          border-color: #ED64A6;
-        }
-
         .card {
           margin: 1rem;
           flex-basis: 45%;
@@ -22,6 +15,7 @@ function LinkGridCard(props) {
           border: 2px solid #eaeaea;
           border-radius: 10px;
           transition: color 0.15s ease, border-color 0.15s ease;
+          width: 800px
         }
 
         @media(max-width: 850px) {
